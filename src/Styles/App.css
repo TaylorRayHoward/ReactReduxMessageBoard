@@ -1,0 +1,25 @@
+.footer-title {
+  height: 100% !important;
+  width: 15% !important;
+  padding: 1rem 1rem !important;
+}
+.footer-button {
+  height: 100% !important;
+  width: 10% !important;
+  padding: 1rem 1rem !important;
+  border-radius: 0;
+  background-color: blue;
+}
+.footer-body {
+  height: 100% !important;
+  width: 75% !important;
+  padding: 1rem 1rem !important;
+}
+.post {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+html {
+  margin-bottom: 65px;
+}
