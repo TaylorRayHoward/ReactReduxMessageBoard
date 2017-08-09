@@ -20,12 +20,6 @@ class App extends Component {
     });
   }
 
-  renderField(field) {
-    return (
-      <input type="text" placeholder={`Enter a ${field.label}...`} {...field.input} className={field.class}/>
-    );
-  }
-
   onSubmit(values) {
     this.props.savePost(values).then(this.props.dispatch(reset('NewPost')));
   }
