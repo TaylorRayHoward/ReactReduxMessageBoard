@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPosts, savePost, deletePost } from '../Actions/PostActions';
+import { getPosts, savePost } from '../Actions/PostActions';
 import { Field, reduxForm, reset } from 'redux-form';
 import '../Styles/App.css';
 import _ from 'lodash';
@@ -59,7 +59,7 @@ let form = reduxForm({
 
 form = connect(state => ({
     posts: state.posts
-  }), { savePost, getPosts, deletePost }
+  }), { savePost, getPosts }
 )(form);
 
 export default form;
