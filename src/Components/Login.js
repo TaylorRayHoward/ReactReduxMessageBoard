@@ -3,8 +3,20 @@
  */
 import '../Styles/App.css';
 import React, { Component } from 'react';
+import { auth } from '../Firebase';
+import { connect } from 'react-redux';
+import { getUser } from '../Actions/LoginAction';
 
 class Login extends Component {
+
+  componentWillMount() {
+    this.props.getUser();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+  }
+
   render() {
     return (
       <div className="container">
@@ -27,7 +39,9 @@ class Login extends Component {
                 </div>
               </div>
               <div className="text-center">
-                <button className="btn btn-primary">Sign In</button>
+                <button className="btn btn-primary"
+                        onClick={() => {auth.signInWithEmailAndPassword('taylor@example.com', 'password');}}>Sign In
+                </button>
               </div>
             </div>
           </div>
@@ -37,4 +51,8 @@ class Login extends Component {
   }
 }
 
-export default Login;
+function mapStateToProps(state) {
+  return { user: state.user }
+}
+
+export default connect(mapStateToProps, { getUser } )(Login);
