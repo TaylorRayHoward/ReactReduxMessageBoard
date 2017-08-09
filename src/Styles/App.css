@@ -8,7 +8,8 @@
   width: 10% !important;
   padding: 1rem 1rem !important;
   border-radius: 0;
-  background-color: blue;
+  background-color: #2D7DD2;
+  color: whitesmoke;
 }
 .footer-body {
   height: 100% !important;
@@ -23,3 +24,8 @@
 html {
   margin-bottom: 65px;
 }
+
+body {
+  background-color: #474647;
+}
+

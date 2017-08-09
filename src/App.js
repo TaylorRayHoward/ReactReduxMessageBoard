@@ -59,7 +59,7 @@ class App extends Component {
               label="Body"
               class="footer-body"
             />
-            <button type="submit" className="btn btn-primary footer-button">Post</button>
+            <button type="submit" className="btn footer-button">Post</button>
           </form>
         </div>
       </div>
