@@ -5,6 +5,7 @@ import { Field, reduxForm, reset } from 'redux-form';
 import '../Styles/App.css';
 import _ from 'lodash';
 import PostCard from '../Components/PostCard';
+import { renderInputField } from '../Components/FormComponents';
 
 class App extends Component {
   componentWillMount() {
@@ -40,13 +41,13 @@ class App extends Component {
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="footerForm">
             <Field
               name="title"
-              component={this.renderField}
+              component={renderInputField}
               label="Title"
               class="footer-title"
-              />
+            />
             <Field
               name="body"
-              component={this.renderField}
+              component={renderInputField}
               label="Body"
               class="footer-body"
             />
