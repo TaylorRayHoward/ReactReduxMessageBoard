@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPosts, savePost, deletePost } from './Actions/PostActions';
+import { getPosts, savePost } from '../Actions/PostActions';
 import { Field, reduxForm, reset } from 'redux-form';
-import './Styles/App.css';
+import '../Styles/App.css';
 import _ from 'lodash';
+import PostCard from '../Components/PostCard';
+import { renderInputField } from '../Components/FormComponents';
 
 class App extends Component {
   componentWillMount() {
@@ -13,25 +15,9 @@ class App extends Component {
   renderPosts() {
     return _.map(this.props.posts, (post, key) => {
       return (
-        <div className="card post" key={key}>
-          <div className="card-block">
-          <h3 className="card-title">
-            {post.title}
-          </h3>
-          <p className="card-text">
-            {post.body}
-          </p>
-            <button className="btn btn-danger float-right" onClick={() => this.props.deletePost(key)}>Delete</button>
-          </div>
-        </div>
+        <PostCard key={key} id={key} title={post.title} body={post.body}/>
       );
     });
-  }
-
-  renderField(field) {
-    return (
-      <input type="text" placeholder={`Enter a ${field.label}...`} {...field.input} className={field.class}/>
-    );
   }
 
   onSubmit(values) {
@@ -49,13 +35,13 @@ class App extends Component {
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="footerForm">
             <Field
               name="title"
-              component={this.renderField}
+              component={renderInputField}
               label="Title"
               class="footer-title"
-              />
+            />
             <Field
               name="body"
-              component={this.renderField}
+              component={renderInputField}
               label="Body"
               class="footer-body"
             />
@@ -73,7 +59,7 @@ let form = reduxForm({
 
 form = connect(state => ({
     posts: state.posts
-  }), { savePost, getPosts, deletePost }
+  }), { savePost, getPosts }
 )(form);
 
 export default form;
