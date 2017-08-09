@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { getUser } from '../Actions/LoginAction';
 
 class Login extends Component {
-
   componentWillMount() {
     this.props.getUser();
   }
@@ -17,7 +16,7 @@ class Login extends Component {
     console.log(nextProps);
   }
 
-  render() {
+  renderHtml() {
     return (
       <div className="container">
         <div className="d-flex justify-content-center align-self-center">
@@ -42,17 +41,35 @@ class Login extends Component {
                 <button className="btn btn-primary"
                         onClick={() => {auth.signInWithEmailAndPassword('taylor@example.com', 'password');}}>Sign In
                 </button>
+                <button className="btn btn-danger"
+                        onClick={() => {auth.signOut();}}>Sign Out
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
     );
+
+  }
+
+  render() {
+    if (this.props.user.loading) {
+      return (
+        <h1>We are loading</h1>
+      );
+    }
+
+    return (
+      <div>
+        {this.renderHtml()}
+      </div>
+    );
   }
 }
 
-function mapStateToProps(state) {
-  return { user: state.user }
+function mapStateToProps(state, ownProps) {
+  return { user: state.user };
 }
 
-export default connect(mapStateToProps, { getUser } )(Login);
+export default connect(mapStateToProps, { getUser })(Login);

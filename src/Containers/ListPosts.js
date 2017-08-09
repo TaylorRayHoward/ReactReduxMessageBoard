@@ -6,10 +6,18 @@ import '../Styles/App.css';
 import _ from 'lodash';
 import PostCard from '../Components/PostCard';
 import { renderInputField } from '../Components/FormComponents';
+import { getUser } from '../Actions/LoginAction';
 
 class App extends Component {
   componentWillMount() {
     this.props.getPosts();
+    this.props.getUser();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(!nextProps.user.loading && nextProps.user.email === undefined){
+      this.props.history.replace('/Login');
+    }
   }
 
   renderPosts() {
@@ -26,6 +34,11 @@ class App extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    if(this.props.user.loading){
+      return(
+        <h1>Loading</h1>
+      )
+    }
     return (
       <div className="container">
         <div className="main">
@@ -57,9 +70,10 @@ let form = reduxForm({
   form: 'NewPost'
 })(App);
 
-form = connect(state => ({
-    posts: state.posts
-  }), { savePost, getPosts }
+form = connect((state, ownProps) => ({
+    posts: state.posts,
+    user: state.user
+  }), { savePost, getPosts, getUser }
 )(form);
 
 export default form;
