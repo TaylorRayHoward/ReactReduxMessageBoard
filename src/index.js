@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ListPosts from './Containers/ListPosts';
+import Login from './Components/Login';
 import registerServiceWorker from './registerServiceWorker';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -14,6 +15,7 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <Switch>
+        <Route path="/Login" component={Login}/>
         <Route path="/" component={ListPosts}/>
       </Switch>
     </BrowserRouter>
