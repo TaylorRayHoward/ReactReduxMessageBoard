@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPosts, savePost, deletePost } from './Actions/PostActions';
+import { getPosts, savePost, deletePost } from '../Actions/PostActions';
 import { Field, reduxForm, reset } from 'redux-form';
-import './Styles/App.css';
+import '../Styles/App.css';
 import _ from 'lodash';
+import PostCard from '../Components/PostCard';
 
 class App extends Component {
   componentWillMount() {
@@ -13,17 +14,7 @@ class App extends Component {
   renderPosts() {
     return _.map(this.props.posts, (post, key) => {
       return (
-        <div className="card post" key={key}>
-          <div className="card-block">
-          <h3 className="card-title">
-            {post.title}
-          </h3>
-          <p className="card-text">
-            {post.body}
-          </p>
-            <button className="btn btn-danger float-right" onClick={() => this.props.deletePost(key)}>Delete</button>
-          </div>
-        </div>
+        <PostCard key={key} id={key} title={post.title} body={post.body}/>
       );
     });
   }

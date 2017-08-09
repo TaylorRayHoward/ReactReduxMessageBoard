@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import App from './Containers/App'
 import registerServiceWorker from './registerServiceWorker'
 import { applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
