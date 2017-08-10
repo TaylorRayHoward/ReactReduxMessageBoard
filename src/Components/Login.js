@@ -3,17 +3,26 @@
  */
 import '../Styles/App.css';
 import React, { Component } from 'react';
-import { auth } from '../Firebase';
 import { connect } from 'react-redux';
-import { getUser } from '../Actions/LoginAction';
+import { getUser, login } from '../Actions/LoginAction';
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: ''
+    };
+  }
+
   componentWillMount() {
     this.props.getUser();
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+    if (nextProps.user.email !== undefined) {
+      this.props.history.replace('/');
+    }
   }
 
   renderHtml() {
@@ -25,26 +34,30 @@ class Login extends Component {
               <div className="card-title text-center">
                 Sign in
               </div>
-              <div className="form-group row">
-                <label htmlFor="input-email" className="col-sm-2 col-form-label">Email</label>
-                <div className="col-sm-10">
-                  <input type="text" id="input-email" className="form-control" placeholder="Email..."/>
+              <form onSubmit={event => {
+                event.preventDefault();
+                this.props.login(this.state.username, this.state.password);
+              }}>
+                <div className="form-group row">
+                  <label htmlFor="input-email" className="col-sm-2 col-form-label">Email</label>
+                  <div className="col-sm-10">
+                    <input onChange={event => {this.setState({ username: event.target.value });}} type="text"
+                           id="input-email"
+                           className="form-control" placeholder="Email..."/>
+                  </div>
                 </div>
-              </div>
-              <div className="form-group row">
-                <label htmlFor="input-password" className="col-sm-2 col-form-label">Password</label>
-                <div className="col-sm-10">
-                  <input type="text" id="input-password" className="form-control" placeholder="Password..."/>
+                <div className="form-group row">
+                  <label htmlFor="input-password" className="col-sm-2 col-form-label">Password</label>
+                  <div className="col-sm-10">
+                    <input onChange={event => {this.setState({ password: event.target.value });}} type="password"
+                           id="input-password" className="form-control" placeholder="Password..."/>
+                  </div>
                 </div>
-              </div>
-              <div className="text-center">
-                <button className="btn btn-primary"
-                        onClick={() => {auth.signInWithEmailAndPassword('taylor@example.com', 'password');}}>Sign In
-                </button>
-                <button className="btn btn-danger"
-                        onClick={() => {auth.signOut();}}>Sign Out
-                </button>
-              </div>
+                <div className="d-flex justify-content-between">
+                  <button type="submit" className="btn btn-primary">Sign in
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -72,4 +85,4 @@ function mapStateToProps(state, ownProps) {
   return { user: state.user };
 }
 
-export default connect(mapStateToProps, { getUser })(Login);
+export default connect(mapStateToProps, { getUser, login })(Login);

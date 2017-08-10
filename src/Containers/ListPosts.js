@@ -7,6 +7,7 @@ import _ from 'lodash';
 import PostCard from '../Components/PostCard';
 import { renderInputField } from '../Components/FormComponents';
 import { getUser } from '../Actions/LoginAction';
+import { auth } from '../Firebase';
 
 class App extends Component {
   componentWillMount() {
@@ -15,7 +16,7 @@ class App extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(!nextProps.user.loading && nextProps.user.email === undefined){
+    if (!nextProps.user.loading && nextProps.user.email === undefined) {
       this.props.history.replace('/Login');
     }
   }
@@ -34,32 +35,39 @@ class App extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    if(this.props.user.loading){
-      return(
+    if (this.props.user.loading) {
+      return (
         <h1>Loading</h1>
-      )
+      );
     }
     return (
-      <div className="container">
-        <div className="main">
-          {this.renderPosts()}
+      <div>
+        <div className="navbar">
+          <button className="btn btn-danger"
+                  onClick={() => {auth.signOut();}}>Sign Out
+          </button>
         </div>
-        <div className="navbar fixed-bottom">
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="footerForm">
-            <Field
-              name="title"
-              component={renderInputField}
-              label="Title"
-              class="footer-title"
-            />
-            <Field
-              name="body"
-              component={renderInputField}
-              label="Body"
-              class="footer-body"
-            />
-            <button type="submit" className="btn footer-button">Post</button>
-          </form>
+        <div className="container">
+          <div className="main">
+            {this.renderPosts()}
+          </div>
+          <div className="navbar fixed-bottom">
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="footerForm">
+              <Field
+                name="title"
+                component={renderInputField}
+                label="Title"
+                class="footer-title"
+              />
+              <Field
+                name="body"
+                component={renderInputField}
+                label="Body"
+                class="footer-body"
+              />
+              <button type="submit" className="btn footer-button">Post</button>
+            </form>
+          </div>
         </div>
       </div>
     );

@@ -14,3 +14,7 @@ export function getUser() {
     });
   };
 }
+
+export function login(username, password) {
+  return dispatch => auth.signInWithEmailAndPassword(username, password);
+}
