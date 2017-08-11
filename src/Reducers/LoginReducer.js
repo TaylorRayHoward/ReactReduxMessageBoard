@@ -1,13 +1,14 @@
 /**
  * Created by taylorrayhoward on 8/8/17.
  */
-import { GET_USER } from '../Actions/LoginAction';
+import { GET_USER, ERROR_LOGIN } from '../Actions/LoginAction';
 
 export default function (state = { loading: true }, action) {
   switch (action.type) {
     case GET_USER:
-      console.log(action.payload);
       return { loading: false, ...action.payload };
+    case ERROR_LOGIN:
+      return { loading: false, error: true, ...state };
     default:
       return state;
   }

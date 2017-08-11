@@ -3,6 +3,7 @@
  */
 import { auth } from '../Firebase';
 export const GET_USER = 'get_user';
+export const ERROR_LOGIN = 'error_login';
 
 export function getUser() {
   return dispatch => {
@@ -16,5 +17,10 @@ export function getUser() {
 }
 
 export function login(username, password) {
-  return dispatch => auth.signInWithEmailAndPassword(username, password);
+  return dispatch => auth.signInWithEmailAndPassword(username, password).catch(error => {
+    dispatch({
+      type: ERROR_LOGIN,
+      payload: error
+    });
+  });
 }
