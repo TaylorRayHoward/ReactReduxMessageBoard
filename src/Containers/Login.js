@@ -57,7 +57,9 @@ class Login extends Component {
                 <div className="form-group row">
                   <label htmlFor="input-password" className="col-sm-2 col-form-label">Password</label>
                   <div className="col-sm-10">
-                    <input onChange={event => {this.setState({ password: event.target.value });}} type="password"
+                    <input onChange={event => {
+                      this.setState({ password: event.target.value });
+                    }} type="password"
                            id="input-password" className="form-control" placeholder="Password..."
                            style={this.props.error ? errStyle : null}/>
                   </div>
@@ -67,8 +69,8 @@ class Login extends Component {
                   </div>}
                 </div>
                 <div className="d-flex justify-content-between">
-                  <button type="submit" className="btn btn-primary">Sign in
-                  </button>
+                  <button type="submit" className="btn btn-primary">Sign In</button>
+                  <button type="button" className="btn btn-info" onClick={() => { this.props.history.push('/CreateAccount')}}>Create Account</button>
                 </div>
               </form>
             </div>
