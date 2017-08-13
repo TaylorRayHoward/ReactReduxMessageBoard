@@ -24,7 +24,6 @@ class CreateAccount extends Component {
 
   validateFields() {
     const { confirmPassword, email, password } = this.state;
-    console.log(`Email ${email} Pass ${password} Confirm ${confirmPassword}`);
     if (confirmPassword === '' || email === '' || password === '') {
       this.setState({
         error: { message: 'Please enter all fields' }
