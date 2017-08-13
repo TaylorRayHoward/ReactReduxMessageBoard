@@ -17,12 +17,7 @@ export function getUser() {
 }
 
 export function login(username, password) {
-  return dispatch => auth.signInWithEmailAndPassword(username, password).catch(error => {
-    dispatch({
-      type: ERROR_LOGIN,
-      payload: error
-    });
-  });
+  return dispatch => auth.signInWithEmailAndPassword(username, password);
 }
 
 export function createAccount(username, password) {

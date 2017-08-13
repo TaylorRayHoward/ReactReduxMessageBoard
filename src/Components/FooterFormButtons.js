@@ -5,7 +5,6 @@ import React from 'react';
 import { browserHistory } from 'react-router-dom';
 const FooterButtons = (props) => {
   const { submitLabel, otherLabel, goToLink } = props;
-  console.log(props);
   return (
     <div className="d-flex justify-content-between">
       <button type="submit" className="btn btn-primary">{submitLabel || 'Submit'}</button>

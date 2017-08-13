@@ -15,7 +15,8 @@ class Login extends Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      error: null
     };
   }
 
@@ -33,11 +34,16 @@ class Login extends Component {
     const errStyle = {
       borderColor: 'red',
     };
-    const { login, error } = this.props;
+    const { login } = this.props;
+    const { error } = this.state;
     return (
       <form onSubmit={event => {
         event.preventDefault();
-        login(this.state.username, this.state.password);
+        login(this.state.username, this.state.password).catch(error => {
+          this.setState({
+            error: error
+          })
+        });
       }}>
         <InputField id="input-email" style={error ? errStyle : null}
                     inputAction={event => {this.setState({ username: event.target.value });}} label="Email"

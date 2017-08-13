@@ -24,6 +24,7 @@ class CreateAccount extends Component {
 
   validateFields() {
     const { confirmPassword, email, password } = this.state;
+    console.log(`Email ${email} Pass ${password} Confirm ${confirmPassword}`);
     if (confirmPassword === '' || email === '' || password === '') {
       this.setState({
         error: { message: 'Please enter all fields' }
@@ -37,7 +38,7 @@ class CreateAccount extends Component {
       return false;
     }
     this.setState({
-      error: null,
+      error: null
     });
     return true;
 
@@ -53,15 +54,15 @@ class CreateAccount extends Component {
     return (
       <form onSubmit={event => {
         event.preventDefault();
-        if(!this.validateFields()) {
+        if (!this.validateFields()) {
           return;
         }
-        this.props.createAccount(this.state.username, this.state.password).then(() => this.props.history.push('/')).catch(error => {
+        this.props.createAccount(this.state.email, this.state.password).then(() => this.props.history.push('/')).catch(error => {
           this.setState({ error: error });
         });
       }}>
         <InputField id="input-email" style={error ? errStyle : null}
-                    inputAction={event => {this.setState({ username: event.target.value });}} label="Email"
+                    inputAction={event => {this.setState({ email: event.target.value });}} label="Email"
                     type="text"/>
         <InputField id="input-password" style={error ? errStyle : null}
                     inputAction={event => {
