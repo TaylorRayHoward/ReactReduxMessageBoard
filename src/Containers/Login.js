@@ -40,7 +40,6 @@ class Login extends Component {
     const errStyle = {
       borderColor: 'red'
     };
-    console.log(this.state.error);
 
     return (
       <form onSubmit={event => { this.submitLogin(event);}}>
