@@ -8,7 +8,7 @@ export default class PostCard extends Component {
     return (
       <div className="card post">
         <div className="card-block">
-          {this.props.message}
+          {this.props.children}
         </div>
       </div>
     )
