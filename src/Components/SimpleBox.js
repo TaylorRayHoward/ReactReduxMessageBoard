@@ -1,6 +1,3 @@
-/**
- * Created by taylorrayhoward on 8/10/17.
- */
 import React, { Component } from 'react';
 export default class SimpleBox extends Component {
 
@@ -10,6 +7,7 @@ export default class SimpleBox extends Component {
         <div className="d-flex justify-content-center align-self-center">
           <div className="card col-sm-6">
             <div className="card-block">
+              {this.props.children}
               <div className="card-title text-center">
                 {this.props.title}
               </div>

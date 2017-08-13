@@ -8,6 +8,7 @@ import { getUser, login } from '../Actions/LoginAction';
 import SimpleBox from '../Components/SimpleBox';
 import InputField from '../Components/InputFIeld';
 import ErrorAlert from '../Components/ErrorAlert';
+import FooterFormButtons from '../Components/FooterFormButtons';
 
 class Login extends Component {
   constructor(props) {
@@ -23,7 +24,6 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     if (nextProps.user.email !== undefined) {
       this.props.history.replace('/');
     }
@@ -40,23 +40,17 @@ class Login extends Component {
         login(this.state.username, this.state.password);
       }}>
         <InputField id="input-email" style={error ? errStyle : null}
-                    inputAction={event => {this.setState({ username: event.target.value });}} label="Email" type="text"/>
+                    inputAction={event => {this.setState({ username: event.target.value });}} label="Email"
+                    type="text"/>
         <InputField id="input-password" style={error ? errStyle : null}
-                    inputAction={event => {this.setState({ password: event.target.value });}} label="Password" type="password"/>
-        {error && <ErrorAlert message="Couldn't log in, check email and password"/>}
-        {this.renderFooter()}
+                    inputAction={event => {this.setState({ password: event.target.value });}} label="Password"
+                    type="password"/>
+        {error &&
+        <ErrorAlert>
+          <div>Couldn't log in, check email and password</div>
+        </ErrorAlert>}
+        <FooterFormButtons submitLabel="Sign in" otherLabel="Create Account" goToLink="/CreateAccount" {...this.props}/>
       </form>
-    );
-  }
-
-  renderFooter() {
-    return (
-      <div className="d-flex justify-content-between">
-        <button type="submit" className="btn btn-primary">Sign In</button>
-        <button type="button" className="btn btn-info" onClick={() => { this.props.history.push('/CreateAccount');}}>
-          Create Account
-        </button>
-      </div>
     );
   }
 

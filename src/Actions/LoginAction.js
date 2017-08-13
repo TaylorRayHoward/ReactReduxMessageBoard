@@ -24,3 +24,7 @@ export function login(username, password) {
     });
   });
 }
+
+export function createAccount(username, password) {
+  return dispatch => auth.createUserWithEmailAndPassword(username, password);
+}

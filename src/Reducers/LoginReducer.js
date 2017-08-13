@@ -8,7 +8,7 @@ export default function (state = { loading: true }, action) {
     case GET_USER:
       return { loading: false, ...action.payload };
     case ERROR_LOGIN:
-      return { loading: false, error: true, ...state };
+      return { loading: false, error: action.payload, ...state };
     default:
       return state;
   }
