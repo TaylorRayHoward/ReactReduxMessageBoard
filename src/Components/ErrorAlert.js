@@ -9,6 +9,5 @@ const ErrorAlert = (props) => {
       {props.children}
     </div>
   );
-};
 
 export default ErrorAlert;

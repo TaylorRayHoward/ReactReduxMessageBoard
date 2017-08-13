@@ -1,6 +1,3 @@
-/**
- * Created by taylorrayhoward on 8/13/17.
- */
 import React, { Component } from 'react';
 import InputField from '../Components/InputField';
 import FooterFormButton from '../Components/FooterFormButton';

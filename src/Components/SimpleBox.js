@@ -1,7 +1,4 @@
-/**
- * Created by taylorrayhoward on 8/13/17.
- */
-import React, { Component } from 'react'
+React, { Component } from 'react'
 
 export default class SimpleBox extends Component {
   render() {
@@ -24,6 +21,6 @@ export default class SimpleBox extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

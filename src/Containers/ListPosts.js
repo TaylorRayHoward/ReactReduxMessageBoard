@@ -7,6 +7,7 @@ import _ from 'lodash';
 import PostCard from '../Components/PostCard';
 import { getUser, logout } from '../Actions/UserActions';
 
+
 class App extends Component {
   componentWillMount() {
     this.props.getPosts();
@@ -43,7 +44,6 @@ class App extends Component {
       <input type="text" placeholder={`Enter a ${field.label}...`} {...field.input} className={field.class}/>
     );
   }
-
   onSubmit(values) {
     this.props.savePost(values).then(this.props.dispatch(reset('NewPost')));
   }
