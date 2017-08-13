@@ -1,15 +1,10 @@
-/**
- * Created by taylorrayhoward on 8/10/17.
- */
-
 import React, { Component } from 'react';
+import InputField from '../Components/InputField';
+import FooterFormButton from '../Components/FooterFormButton';
 import SimpleBox from '../Components/SimpleBox';
-import ErrorAlert from '../Components/ErrorAlert';
-import InputField from '../Components/InputFIeld';
-import '../Styles/App.css';
+import { createAccount } from '../Actions/UserActions';
 import { connect } from 'react-redux';
-import { createAccount } from '../Actions/LoginAction';
-import FooterFormButtons from '../Components/FooterFormButtons';
+import ErrorAlert from '../Components/ErrorAlert';
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -18,81 +13,72 @@ class CreateAccount extends Component {
       email: '',
       password: '',
       confirmPassword: '',
-      error: null
+      error: ''
     };
   }
 
-  validateFields() {
-    const { confirmPassword, email, password } = this.state;
-    if (confirmPassword === '' || email === '' || password === '') {
-      this.setState({
-        error: { message: 'Please enter all fields' }
-      });
-      return false;
-    }
-    if (confirmPassword !== password) {
-      this.setState({
-        error: { message: 'Please make sure passwords match' }
-      });
-      return false;
-    }
-    this.setState({
-      error: null
-    });
-    return true;
+  isValid() {
+    const { email, password, confirmPassword } = this.state;
 
+    if (email === '' || password === '' || confirmPassword === '') {
+      this.setState({
+        error: 'Please enter in all fields'
+      });
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      this.setState({
+        error: 'Please make sure your passwords match'
+      });
+      return false;
+    }
+
+    return true;
+  }
+
+  submitAccount(event) {
+    event.preventDefault();
+    if (!this.isValid()) {
+      return;
+    }
+    this.props.createAccount(this.state.email, this.state.password).then(() => {
+      this.props.history.replace('/');
+    }).catch(err => {
+      this.setState({
+        error: err.message
+      });
+    });
   }
 
   renderBody() {
     const errStyle = {
-      borderColor: 'red',
+      borderColor: 'red'
     };
-
-    const { error } = this.state;
-
     return (
-      <form onSubmit={event => {
-        event.preventDefault();
-        if (!this.validateFields()) {
-          return;
-        }
-        this.props.createAccount(this.state.email, this.state.password).then(() => this.props.history.push('/')).catch(error => {
-          this.setState({ error: error });
-        });
-      }}>
-        <InputField id="input-email" style={error ? errStyle : null}
-                    inputAction={event => {this.setState({ email: event.target.value });}} label="Email"
-                    type="text"/>
-        <InputField id="input-password" style={error ? errStyle : null}
-                    inputAction={event => {
-                      this.setState({
-                        password: event.target.value
-                      });
-                    }}
-                    label="Password"
-                    type="password"/>
-        <InputField id="input-confirm-password" style={error ? errStyle : null}
-                    inputAction={event => {
-                      this.setState({
-                        confirmPassword: event.target.value,
-                      });
-                    }}
-                    label="Confirm Password"
-                    type="password"/>
-        {error &&
-        <ErrorAlert>
-          <div>{this.state.error.message}</div>
-        </ErrorAlert>}
-        <FooterFormButtons submitLabel="Create Account" {...this.props} goToLink="/"/>
-      </form>
+      <div>
+        <form onSubmit={(event) => this.submitAccount(event)}>
+          <InputField id="email" type="text" label="Email"
+                      inputAction={(event) => this.setState({ email: event.target.value })}
+                      style={this.state.error ? errStyle : null }/>
+          <InputField id="password" type="password" label="Password"
+                      inputAction={(event) => this.setState({ password: event.target.value })}
+                      style={this.state.error ? errStyle : null }/>
+          <InputField id="confirm-password" type="password" label="Confirm Password"
+                      inputAction={(event) => this.setState({ confirmPassword: event.target.value })}
+                      style={this.state.error ? errStyle : null }/>
+          {this.state.error && <ErrorAlert>
+            {this.state.error}
+          </ErrorAlert>}
+          <FooterFormButton submitLabel="Create Account" otherLabel="Go back" goToLink="/Login" {...this.props}/>
+        </form>
+      </div>
     );
   }
 
   render() {
     return (
-      <div>
-        <SimpleBox title="Create Account" body={this.renderBody()}/>
-      </div>
+      <SimpleBox body={this.renderBody()} title="Create Account"/>
     );
   }
 }

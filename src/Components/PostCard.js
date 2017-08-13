@@ -1,6 +1,3 @@
-/**
- * Created by taylorrayhoward on 8/8/17.
- */
 import React, { Component } from 'react';
 
 export default class PostCard extends Component {
@@ -14,4 +11,3 @@ export default class PostCard extends Component {
     )
   }
 }
-

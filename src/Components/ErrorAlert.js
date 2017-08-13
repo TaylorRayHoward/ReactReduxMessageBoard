@@ -1,17 +1,13 @@
 /**
- * Created by taylorrayhoward on 8/10/17.
+ * Created by taylorrayhoward on 8/13/17.
  */
 import React from 'react';
-const errorMargin = {
-  marginTop: '10px'
-};
+
 const ErrorAlert = (props) => {
   return (
-    <div className="alert alert-danger" role="alert" style={errorMargin}>
+    <div className="alert alert-danger" role="alert">
       {props.children}
     </div>
   );
-
-};
 
 export default ErrorAlert;
