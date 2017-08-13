@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPosts, savePost } from '../Actions/PostActions';
+import { getPosts, savePost, deletePost } from '../Actions/PostActions';
 import { Field, reduxForm, reset } from 'redux-form';
 import '../Styles/App.css';
 import _ from 'lodash';
@@ -27,7 +27,11 @@ class App extends Component {
   renderPosts() {
     return _.map(this.props.posts, (post, key) => {
       return (
-        <PostCard key={key} id={key} title={post.title} body={post.body}/>
+        <PostCard key={key} id={key} title={post.title} body={post.body}>
+          <h3 className="card-title">{post.title}</h3>
+          <p className="card-text">{post.body}</p>
+          <button className="btn btn-danger float-right" onClick={() => { this.props.deletePost(key)}}>Delete</button>
+        </PostCard>
       );
     });
   }
@@ -84,7 +88,7 @@ let form = reduxForm({
 form = connect((state, ownProps) => ({
     posts: state.posts,
     user: state.user
-  }), { savePost, getPosts, getUser }
+  }), { savePost, getPosts, getUser, deletePost }
 )(form);
 
 export default form;
