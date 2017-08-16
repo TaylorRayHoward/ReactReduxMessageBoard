@@ -1,4 +1,4 @@
-import { auth } from '../Firebase';
+import { auth, provider } from '../Firebase';
 export const GET_USER = 'get_user';
 export function getUser() {
   return dispatch => {
@@ -21,4 +21,8 @@ export function logout() {
 
 export function createAccount(email, password) {
   return dispatch => auth.createUserWithEmailAndPassword(email, password);
+}
+
+export function googleLogin() {
+  return dispatch => auth.signInWithPopup(provider)
 }

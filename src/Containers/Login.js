@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import SimpleBox from '../Components/SimpleBox';
 import InputField from '../Components/InputField';
 import FooterFormButton from '../Components/FooterFormButton';
-import { login, getUser } from '../Actions/UserActions';
+import { login, getUser, googleLogin } from '../Actions/UserActions';
 import { connect } from 'react-redux';
 import ErrorAlert from '../Components/ErrorAlert';
-
 
 class Login extends Component {
   constructor(props) {
@@ -74,4 +73,4 @@ function mapStateToProps(state) {
   return { user: state.user };
 }
 
-export default connect(mapStateToProps, { login, getUser })(Login);
+export default connect(mapStateToProps, { login, getUser, googleLogin })(Login);
