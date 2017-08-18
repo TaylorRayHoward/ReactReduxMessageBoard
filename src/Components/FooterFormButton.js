@@ -2,6 +2,7 @@
  * Created by taylorrayhoward on 8/13/17.
  */
 import React from 'react';
+import '../Styles/App.css'
 
 const FooterButton = (props) => {
   const { submitLabel, otherLabel, goToLink, history } = props;

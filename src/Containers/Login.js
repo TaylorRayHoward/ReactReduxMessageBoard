@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import ErrorAlert from '../Components/ErrorAlert';
 import SocialMediaLogin from '../Components/SocialMediaLogin';
 
-
 class Login extends Component {
   constructor(props) {
     super(props);

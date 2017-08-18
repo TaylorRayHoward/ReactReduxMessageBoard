@@ -3,6 +3,7 @@
   width: 15% !important;
   padding: 1rem 1rem !important;
 }
+
 .footer-button {
   height: 100% !important;
   width: 10% !important;
@@ -11,11 +12,13 @@
   background-color: #2D7DD2;
   color: whitesmoke;
 }
+
 .footer-body {
   height: 100% !important;
   width: 75% !important;
   padding: 1rem 1rem !important;
 }
+
 .post {
   margin-bottom: 1rem;
   margin-top: 1rem;

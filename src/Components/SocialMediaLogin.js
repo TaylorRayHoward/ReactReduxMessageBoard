@@ -17,5 +17,3 @@ const SocialMediaLogin = (props) => {
     </div>
   );
 };
-
-export default SocialMediaLogin;
