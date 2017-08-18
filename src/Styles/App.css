@@ -31,15 +31,3 @@ html {
 body {
   background-color: #474647;
 }
-
-.sign-in-icon {
-  cursor: pointer;
-}
-
-.google-button {
-  content: url('../imgs/btn_google_signin_dark_normal_web.png');
-}
-
-.google-button:hover {
-  content: url('../imgs/btn_google_signin_dark_focus_web.png');
-}
