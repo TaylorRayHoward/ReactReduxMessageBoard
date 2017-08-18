@@ -24,7 +24,7 @@ export function createAccount(email, password) {
 }
 
 export function googleLogin() {
-  return dispatch => auth.signInWithPopup(googleProvider)
+  return dispatch => auth.signInWithPopup(googleProvider);
 }
 
 export function twitterLogin() {
