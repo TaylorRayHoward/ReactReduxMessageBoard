@@ -7,7 +7,6 @@ import _ from 'lodash';
 import PostCard from '../Components/PostCard';
 import { getUser, logout } from '../Actions/UserActions';
 
-
 class App extends Component {
   componentWillMount() {
     this.props.getPosts();
@@ -21,6 +20,7 @@ class App extends Component {
     if (nextProps.user.loading === false && nextProps.user.email === undefined) {
       this.props.history.replace('/Login');
     }
+    console.log(this.props.user);
   }
 
   renderPosts() {
@@ -33,7 +33,8 @@ class App extends Component {
           <p className="card-text">
             {post.body}
           </p>
-          <button className="btn btn-danger float-right" onClick={() => this.props.deletePost(key)}>Delete</button>
+          {post.uid === this.props.user.uid &&
+          <button className="btn btn-danger float-right" onClick={() => this.props.deletePost(key)}>Delete</button>}
         </PostCard>
       );
     });
@@ -44,8 +45,9 @@ class App extends Component {
       <input type="text" placeholder={`Enter a ${field.label}...`} {...field.input} className={field.class}/>
     );
   }
+
   onSubmit(values) {
-    this.props.savePost(values).then(this.props.dispatch(reset('NewPost')));
+    this.props.savePost(values, this.props.user.uid).then(this.props.dispatch(reset('NewPost')));
   }
 
   render() {
