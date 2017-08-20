@@ -11,16 +11,6 @@ class App extends Component {
   componentWillMount() {
     this.props.getPosts();
     this.props.getUser();
-    if (this.props.user.loading === false && this.props.user.email === undefined) {
-      this.props.history.replace('/Login');
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user.loading === false && nextProps.user.email === undefined) {
-      this.props.history.replace('/Login');
-    }
-    console.log(this.props.user);
   }
 
   renderPosts() {

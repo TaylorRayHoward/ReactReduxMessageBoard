@@ -9,15 +9,22 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './Containers/Login';
 import CreateAccount from './Containers/CreateAccount';
+import AuthenticatedComponent from './Containers/AuthenticatedComponent';
+
+
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <Switch>
-        <Route path="/CreateAccount" component={CreateAccount} />
-        <Route path="/Login" component={Login} />
-        <Route path="/" component={ListPosts}/>
+        <Route path="/CreateAccount" component={CreateAccount}/>
+        <Route path="/Login" component={Login}/>
+        <AuthenticatedComponent {...this.props}>
+          <div>
+            <Route path="/" component={ListPosts}/>
+          </div>
+        </AuthenticatedComponent>
       </Switch>
     </BrowserRouter>
   </Provider>,
