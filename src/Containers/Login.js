@@ -17,7 +17,15 @@ class Login extends Component {
     };
   }
 
+  componentWillMount() {
+    this.goHome();
+  }
+
   componentWillUpdate() {
+    this.goHome();
+  }
+
+  goHome() {
     if(this.props.user !== null) {
       this.props.history.push('/');
     }
