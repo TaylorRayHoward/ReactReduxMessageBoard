@@ -1,6 +1,3 @@
-/**
- * Created by taylorrayhoward on 8/20/17.
- */
 import React from 'react';
 import '../Styles/App.css'
 

@@ -1,6 +1,3 @@
-/**
- * Created by taylorrayhoward on 8/19/17.
- */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUser } from '../Actions/UserActions';

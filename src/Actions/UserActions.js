@@ -1,4 +1,5 @@
 import { auth, googleProvider, twitterProvider } from '../Firebase';
+
 export const GET_USER = 'get_user';
 export const USER_STATUS = 'user_status';
 export function getUser() {

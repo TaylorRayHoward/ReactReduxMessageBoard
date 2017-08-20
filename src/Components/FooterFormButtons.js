@@ -1,6 +1,3 @@
-/**
- * Created by taylorrayhoward on 8/12/17.
- */
 import React from 'react';
 import { browserHistory } from 'react-router-dom';
 const FooterButtons = (props) => {
