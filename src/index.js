@@ -20,7 +20,7 @@ ReactDOM.render(
       <Switch>
         <Route path="/CreateAccount" component={CreateAccount}/>
         <Route path="/Login" component={Login}/>
-        <AuthenticatedComponent {...this.props}>
+        <AuthenticatedComponent>
           <div>
             <Route path="/" component={ListPosts}/>
           </div>
