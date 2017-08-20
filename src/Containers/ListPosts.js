@@ -8,11 +8,6 @@ import PostCard from '../Components/PostCard';
 import { getUser, logout } from '../Actions/UserActions';
 
 class App extends Component {
-  componentWillMount() {
-    this.props.getPosts();
-    this.props.getUser();
-  }
-
   renderPosts() {
     return _.map(this.props.posts, (post, key) => {
       return (

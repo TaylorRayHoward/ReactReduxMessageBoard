@@ -31,3 +31,7 @@ html {
 body {
   background-color: #474647;
 }
+
+.loading {
+  color: white;
+}
