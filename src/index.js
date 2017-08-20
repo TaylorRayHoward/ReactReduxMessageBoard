@@ -19,11 +19,11 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <LoadingComponent>
+          <AuthenticatedComponent>
+            <Route path="/" component={ListPosts}/>
+          </AuthenticatedComponent>
           <Route path="/CreateAccount" component={CreateAccount}/>
           <Route path="/Login" component={Login}/>
-          <AuthenticatedComponent>
-              <Route path="/" component={ListPosts}/>
-          </AuthenticatedComponent>
         </LoadingComponent>
       </Switch>
     </BrowserRouter>
