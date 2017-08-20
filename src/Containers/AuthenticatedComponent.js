@@ -10,20 +10,23 @@ class AuthenticatedComponent extends Component {
   componentDidMount() {
     this.props.getUser();
   }
+
   componentDidUpdate() {
-    const { user } = this.props;
-    if (!user.loading && user.uid === undefined) {
+    const { user, loading } = this.props;
+    if (loading.user === false && !user) {
       this.props.history.replace('/Login');
     }
   }
 
   render() {
-    return (this.props.user.loading === false && this.props.user.uid !== undefined) ? this.props.children : <div>Null</div>;
+    const { user, children, loading } = this.props;
+    console.log(this.props);
+    return (loading.user === false && user) ? children : <div>Null</div>;
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  return { user: state.user };
+  return { user: state.user, loading: state.loading };
 }
 
 export default connect(mapStateToProps, { getUser })(withRouter(AuthenticatedComponent));
