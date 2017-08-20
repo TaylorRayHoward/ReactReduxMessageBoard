@@ -7,10 +7,6 @@ import { getUser } from '../Actions/UserActions';
 import { withRouter } from 'react-router-dom';
 
 class AuthenticatedComponent extends Component {
-  componentDidMount() {
-    this.props.getUser();
-  }
-
   componentDidUpdate() {
     const { user, loading } = this.props;
     if (loading.user === false && !user) {
@@ -20,8 +16,7 @@ class AuthenticatedComponent extends Component {
 
   render() {
     const { user, children, loading } = this.props;
-    console.log(this.props);
-    return (loading.user === false && user) ? children : <div>Null</div>;
+    return (loading.user === false && user) ? children : null;
   }
 }
 
