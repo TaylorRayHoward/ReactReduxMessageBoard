@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 class AuthenticatedComponent extends Component {
   componentDidUpdate() {
+    console.log('auth');
     const { user, loading } = this.props;
     if (loading.user === false && !user) {
       this.props.history.replace('/Login');
@@ -21,4 +22,4 @@ function mapStateToProps(state, ownProps) {
   return { user: state.user, loading: state.loading };
 }
 
-export default connect(mapStateToProps, { getUser })(withRouter(AuthenticatedComponent));
+export default withRouter(connect(mapStateToProps, { getUser })(AuthenticatedComponent));

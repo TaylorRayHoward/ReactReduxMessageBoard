@@ -17,15 +17,15 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
-      <Switch>
-        <LoadingComponent>
+      <LoadingComponent>
+        <Switch>
+          <Route path="/CreateAccount" component={CreateAccount}/>
+          <Route path="/Login" component={Login}/>
           <AuthenticatedComponent>
             <Route path="/" component={ListPosts}/>
           </AuthenticatedComponent>
-          <Route path="/CreateAccount" component={CreateAccount}/>
-          <Route path="/Login" component={Login}/>
-        </LoadingComponent>
-      </Switch>
+        </Switch>
+      </LoadingComponent>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root'));

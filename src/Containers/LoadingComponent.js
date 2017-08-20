@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { getUser } from '../Actions/UserActions';
 import { getPosts } from '../Actions/PostActions';
 import Loading from '../Components/Loading';
+import { withRouter } from 'react-router-dom';
 
 class LoadingComponent extends Component {
   componentWillMount() {
+    console.log('loading')
     const { loading } = this.props;
-    if(loading.user === undefined && loading.posts === undefined) {
+    if (loading.user === undefined && loading.posts === undefined) {
       this.props.getUser();
       this.props.getPosts();
     }
@@ -30,4 +32,4 @@ function mapStateToProps(state) {
   return { loading: state.loading, user: state.user };
 }
 
-export default connect(mapStateToProps, { getUser, getPosts })(LoadingComponent);
+export default withRouter(connect(mapStateToProps, { getUser, getPosts })(LoadingComponent));
