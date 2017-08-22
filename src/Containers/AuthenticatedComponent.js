@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 
 class AuthenticatedComponent extends Component {
   componentDidUpdate() {
-    console.log('auth');
     const { user, loading } = this.props;
     if (loading.user === false && !user) {
       this.props.history.replace('/Login');
