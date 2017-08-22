@@ -17,6 +17,11 @@ export function getPosts() {
         type: POST_STATUS,
         payload: false
       })
+    }, () => {
+      dispatch({
+        type: POST_STATUS,
+        payload: -1
+      })
     });
   };
 }
