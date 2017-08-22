@@ -8,8 +8,16 @@ import { withRouter } from 'react-router-dom';
 class LoadingComponent extends Component {
   componentWillMount() {
     const { loading } = this.props;
-    if (loading.user === undefined && loading.posts === undefined) {
+    if (loading.user === undefined) {
       this.props.getUser();
+    }
+    if(loading.posts === undefined){
+      this.props.getPosts();
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.loading.posts === -1) {
       this.props.getPosts();
     }
   }
