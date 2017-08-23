@@ -15,7 +15,7 @@ class LoadingComponent extends Component {
       this.props.getPosts();
     }
   }
-
+  
   componentWillReceiveProps(nextProps) {
     if(nextProps.postsLoading === -1 && nextProps.user !== null) {
       this.props.getPosts();

@@ -1,6 +1,3 @@
-/**
- * Created by taylorrayhoward on 8/13/17.
- */
 import React from 'react';
 
 const ErrorAlert = (props) => {

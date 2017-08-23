@@ -1,6 +1,3 @@
-/**
- * Created by taylorrayhoward on 8/10/17.
- */
 import React from 'react';
 function isVowel(char) {
   return /^[aeiou]$/.test(char.toLowerCase());
