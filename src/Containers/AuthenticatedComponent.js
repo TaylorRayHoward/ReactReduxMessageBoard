@@ -1,24 +1,23 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUser } from '../Actions/UserActions';
 import { withRouter } from 'react-router-dom';
 
 class AuthenticatedComponent extends Component {
   componentDidUpdate() {
-    const { user, loading } = this.props;
-    if (loading.user === false && !user) {
-      this.props.history.replace('/Login');
+    const { userLoading, user } = this.props;
+    if (userLoading === false && !user) {
+      this.props.history.push('/Login');
     }
   }
 
   render() {
-    const { user, children, loading } = this.props;
-    return (loading.user === false && user) ? children : null;
+    const { user, children, userLoading } = this.props;
+    return (userLoading === false && user) ? children : null
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return { user: state.user, loading: state.loading };
+function mapStateToProps(state) {
+  return { user: state.user, userLoading: state.loading.user };
 }
 
-export default withRouter(connect(mapStateToProps, { getUser })(AuthenticatedComponent));
+export default withRouter(connect(mapStateToProps)(AuthenticatedComponent));

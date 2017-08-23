@@ -18,17 +18,7 @@ class Login extends Component {
   }
 
   componentWillMount() {
-    this.goHome()
-  }
-
-  componentWillReceiveProps() {
-    this.goHome();
-  }
-
-
-
-  goHome() {
-    if(this.props.user !== null) {
+    if (this.props.user !== null) {
       this.props.history.push('/');
     }
   }

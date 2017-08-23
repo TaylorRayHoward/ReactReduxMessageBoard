@@ -9,9 +9,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './Containers/Login';
 import CreateAccount from './Containers/CreateAccount';
-import AuthenticatedComponent from './Containers/AuthenticatedComponent';
 import LoadingComponent from './Containers/LoadingComponent';
-
+import AuthenticatedComponent from './Containers/AuthenticatedComponent';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(

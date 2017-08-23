@@ -1,42 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { getUser } from '../Actions/UserActions';
 import { getPosts } from '../Actions/PostActions';
-import Loading from '../Components/Loading';
-import { withRouter } from 'react-router-dom';
 
 class LoadingComponent extends Component {
   componentWillMount() {
-    const { loading } = this.props;
-    if (loading.user === undefined) {
+    const { userLoading, postsLoading } = this.props;
+    if(userLoading === undefined) {
       this.props.getUser();
     }
-    if(loading.posts === undefined){
+
+    if(postsLoading === undefined) {
       this.props.getPosts();
     }
   }
-
-  componentWillReceiveProps(nextProps){
-    if(nextProps.loading.posts === -1 && nextProps.user !== null) {
+  
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.postsLoading === -1 && nextProps.user !== null) {
       this.props.getPosts();
     }
   }
 
   render() {
-    const { user, posts } = this.props.loading;
-    if ((!user && !posts) || (this.props.user === null))
+    const { userLoading, postsLoading, children } = this.props;
+    if((!userLoading && !postsLoading) || (this.props.user === null)) {
       return (
         <div>
-          {this.props.children}
+          {children}
         </div>
-      );
-    else
-      return <Loading />;
+      )
+    }
+    else {
+      return (
+        <div>Loading...</div>
+      )
+    }
   }
 }
 
 function mapStateToProps(state) {
-  return { loading: state.loading, user: state.user };
+  return {
+    userLoading: state.loading.user,
+    postsLoading: state.loading.posts,
+    user: state.user
+  };
 }
 
-export default withRouter(connect(mapStateToProps, { getUser, getPosts })(LoadingComponent));
+export default withRouter(connect(mapStateToProps, { getUser, getPosts })(LoadingComponent))
