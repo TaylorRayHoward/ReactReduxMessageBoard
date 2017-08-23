@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getUser } from '../Actions/UserActions';
 import { getPosts } from '../Actions/PostActions';
+import Loading from '../Components/Loading';
 
 class LoadingComponent extends Component {
   componentWillMount() {
@@ -33,7 +34,7 @@ class LoadingComponent extends Component {
     }
     else {
       return (
-        <div>Loading...</div>
+        <Loading />
       )
     }
   }
