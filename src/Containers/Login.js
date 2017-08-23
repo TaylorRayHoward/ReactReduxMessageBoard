@@ -18,11 +18,7 @@ class Login extends Component {
   }
 
   componentWillMount() {
-    this.props.getUser();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user.email !== undefined) {
+    if (this.props.user !== null) {
       this.props.history.push('/');
     }
   }

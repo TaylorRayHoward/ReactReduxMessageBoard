@@ -9,20 +9,6 @@ import { getUser, logout } from '../Actions/UserActions';
 
 
 class App extends Component {
-  componentWillMount() {
-    this.props.getPosts();
-    this.props.getUser();
-    if (this.props.user.loading === false && this.props.user.email === undefined) {
-      this.props.history.replace('/Login');
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user.loading === false && nextProps.user.email === undefined) {
-      this.props.history.replace('/Login');
-    }
-  }
-
   renderPosts() {
     return _.map(this.props.posts, (post, key) => {
       return (
