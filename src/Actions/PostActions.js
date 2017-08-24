@@ -33,3 +33,7 @@ export function savePost(post, uid) {
 export function deletePost(id) {
   return dispatch => database.child(id).remove();
 }
+
+export function saveComment(comment, id) {
+  return dispatch => database.child(id).child('comments').push({ content: comment.content })
+}

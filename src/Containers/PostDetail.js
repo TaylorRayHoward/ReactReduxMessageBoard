@@ -3,12 +3,22 @@ import { connect } from 'react-redux';
 import PostCard from '../Components/PostCard';
 import Link from 'react-router-dom/es/Link';
 import { deletePost } from '../Actions/PostActions';
+import AddComment from './AddComment';
+import Comments from '../Components/Comments';
+import Comment from '../Components/Comment';
+import _ from 'lodash'
 
 class PostDetail extends Component {
+  renderComments() {
+    return _.map(this.props.post.comments, (comment, key) => {
+      return <Comment key={key} body={comment.content} />
+    });
+
+  }
   render() {
     const { post, history, match, deletePost, user } = this.props;
-    if(post === undefined) {
-      history.push('/')
+    if (post === undefined) {
+      history.push('/');
     }
     return (
       <div>
@@ -27,7 +37,9 @@ class PostDetail extends Component {
                       deletePost(match.params.id);
                       history.push('/');
                     }}>Delete</button>}
+            <AddComment id={this.props.match.params.id}/>
           </PostCard>
+          {this.renderComments()}
         </div>
       </div>
     );
