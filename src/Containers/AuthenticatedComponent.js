@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import * as React from 'react';
 
 class AuthenticatedComponent extends Component {
   componentDidUpdate() {
@@ -12,7 +13,7 @@ class AuthenticatedComponent extends Component {
 
   render() {
     const { user, children, userLoading } = this.props;
-    return (userLoading === false && user) ? children : null
+    return (userLoading === false && user) ? <div>{children}</div>: null
   }
 }
 

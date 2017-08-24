@@ -11,6 +11,7 @@ import Login from './Containers/Login';
 import CreateAccount from './Containers/CreateAccount';
 import LoadingComponent from './Containers/LoadingComponent';
 import AuthenticatedComponent from './Containers/AuthenticatedComponent';
+import PostDetail from './Containers/PostDetail';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(
@@ -21,7 +22,8 @@ ReactDOM.render(
           <Route path="/CreateAccount" component={CreateAccount}/>
           <Route path="/Login" component={Login}/>
           <AuthenticatedComponent>
-            <Route path="/" component={ListPosts}/>
+            <Route path="/:id" component={PostDetail}/>
+            <Route exact path="/" component={ListPosts}/>
           </AuthenticatedComponent>
         </Switch>
       </LoadingComponent>

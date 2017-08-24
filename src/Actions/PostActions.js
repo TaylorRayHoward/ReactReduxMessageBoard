@@ -10,24 +10,24 @@ export function getPosts() {
     });
     database.on('value', snapshot => {
       dispatch({
-        type: POST_STATUS,
-        payload: false
-      });
-      dispatch({
         type: FETCH_POSTS,
         payload: snapshot.val()
+      });
+      dispatch({
+        type: POST_STATUS,
+        payload: false
       });
     }, () => {
       dispatch({
         type: POST_STATUS,
         payload: -1
-      })
+      });
     });
   };
 }
 
-export function savePost(post) {
-  return dispatch => database.push(post);
+export function savePost(post, uid) {
+  return dispatch => database.push({ ...post, uid });
 }
 
 export function deletePost(id) {
