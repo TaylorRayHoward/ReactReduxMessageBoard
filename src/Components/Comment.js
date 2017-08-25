@@ -5,8 +5,8 @@ const Comment = (props) => {
       <div className="card card-outline-secondard">
         <div className="card-block">
           {props.body}
+          {props.delete && <button className="btn btn-danger float-right" onClick={props.deleteComment}>Delete</button>}
         </div>
-        {props.delete && <button className="btn btn-danger float-right" onClick={props.deleteComment}>Delete</button>}
       </div>
     </div>
   );
