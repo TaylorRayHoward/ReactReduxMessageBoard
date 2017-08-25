@@ -7,12 +7,11 @@ import { required } from '../Helpers/ReduxFormValidation';
 class AddComment extends Component {
 
   onSubmit(values) {
-    this.props.saveComment(values, this.props.id).then(() => { this.props.dispatch(reset('CreateCommentForm'));});
+    this.props.saveComment(values, this.props.id, this.props.uid).then(() => { this.props.dispatch(reset('CreateCommentForm'));});
   }
 
   renderComment(field) {
     const { meta: { touched, error } } = field;
-    console.log(field.meta)
     const errStyle = {
       borderColor: 'red'
     };
@@ -43,5 +42,5 @@ class AddComment extends Component {
 export default reduxForm({
   form: 'CreateCommentForm'
 })(
-  connect(null, { saveComment })(AddComment)
+  connect((state, ownProps) => ({ uid: state.user.uid }), { saveComment })(AddComment)
 );
