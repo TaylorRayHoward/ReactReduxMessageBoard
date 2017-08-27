@@ -28,6 +28,7 @@ export function getPosts() {
 
 export function savePost(post) {
   return dispatch => database.push(post);
+}
 
 export function deletePost(id) {
   return dispatch => database.child(id).remove();
