@@ -26,8 +26,8 @@ export function getPosts() {
   };
 }
 
-export function savePost(post) {
-  return dispatch => database.push(post);
+export function savePost(post, uid) {
+  return dispatch => database.push({...post, uid});
 }
 
 export function deletePost(id) {
