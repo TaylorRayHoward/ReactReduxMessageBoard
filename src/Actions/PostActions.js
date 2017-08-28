@@ -10,18 +10,18 @@ export function getPosts() {
     });
     database.on('value', snapshot => {
       dispatch({
-        type: POST_STATUS,
-        payload: false
-      });
-      dispatch({
         type: FETCH_POSTS,
         payload: snapshot.val()
+      });
+      dispatch({
+        type: POST_STATUS,
+        payload: false
       });
     }, () => {
       dispatch({
         type: POST_STATUS,
         payload: -1
-      })
+      });
     });
   };
 }
@@ -32,4 +32,10 @@ export function savePost(post) {
 
 export function deletePost(id) {
   return dispatch => database.child(id).remove();
+}
+
+export function saveComment(postId, comment, uid) {
+  return dispatch => database.child(postId).child('comments').push({
+    content: comment.content, uid
+  });
 }

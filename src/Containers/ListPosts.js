@@ -6,15 +6,18 @@ import '../Styles/App.css';
 import _ from 'lodash';
 import PostCard from '../Components/PostCard';
 import { getUser, logout } from '../Actions/UserActions';
+import Link from 'react-router-dom/es/Link';
 
 class App extends Component {
   renderPosts() {
     return _.map(this.props.posts, (post, key) => {
       return (
         <PostCard key={key}>
-          <h3 className="card-title">
-            {post.title}
-          </h3>
+          <Link to={`/${key}`}>
+            <h3 className="card-title">
+              {post.title}
+            </h3>
+          </Link>
           <p className="card-text">
             {post.body}
           </p>

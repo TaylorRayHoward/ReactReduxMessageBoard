@@ -5,6 +5,7 @@ import SimpleBox from '../Components/SimpleBox';
 import { createAccount } from '../Actions/UserActions';
 import { connect } from 'react-redux';
 import ErrorAlert from '../Components/ErrorAlert';
+import { errStyle } from '../Helpers/ReduxFormValidation';
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -52,9 +53,6 @@ class CreateAccount extends Component {
   }
 
   renderBody() {
-    const errStyle = {
-      borderColor: 'red'
-    };
     return (
       <div>
         <form onSubmit={(event) => this.submitAccount(event)}>

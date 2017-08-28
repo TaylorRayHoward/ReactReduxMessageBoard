@@ -6,6 +6,7 @@ import { login, getUser, googleLogin, twitterLogin } from '../Actions/UserAction
 import { connect } from 'react-redux';
 import ErrorAlert from '../Components/ErrorAlert';
 import SocialMediaLogin from '../Components/SocialMediaLogin';
+import { errStyle } from '../Helpers/ReduxFormValidation';
 
 class Login extends Component {
   constructor(props) {
@@ -33,10 +34,6 @@ class Login extends Component {
   }
 
   renderBody() {
-    const errStyle = {
-      borderColor: 'red'
-    };
-
     return (
       <form onSubmit={event => { this.submitLogin(event);}}>
         <div>
