@@ -22,6 +22,13 @@ class Login extends Component {
       this.props.history.push('/');
     }
   }
+  
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user !== null) {
+      nextProps.history.push('/');
+    }
+  }
+
 
   submitLogin(event) {
     event.preventDefault();
